@@ -1,2 +1,3 @@
 *.pyc
 data/*.7z
+data/math/*.7z
