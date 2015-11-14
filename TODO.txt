@@ -1,0 +1,4 @@
+TODO:
+    1. Parse files and model
+    2. Push manageable subset or subgraph of data to Github
+    3. Begin expertise analysis
