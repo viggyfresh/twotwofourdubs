@@ -1,15 +1,18 @@
 from collections import defaultdict
-import pickle
+import cPickle
 
-posts = pickle.load(open("pickle/posts.pickle",'r'))
-#users = pickle.load("pickle/users.pickle")
+posts = cPickle.load(open("pickle/posts.pickle",'r'))
+#users = cPickle.load("pickle/users.pickle")
 
 edges = defaultdict(list)
 
-for post in posts:
-	if "<Geometry>" in post["Tags"]:
-		if post["PostTypeId"] == "2":
-			edges[post["ParentID"]["OwnerUserId"]].append(post["OwnerUserId"])
+for p_id in posts:
+	post = posts[p_id]
+	if post["PostTypeId"] == "2":
+		parent_post = posts[post["ParentId"]]
+		if "Tags" in parent_post and "<geometry>" in parent_post['Tags']:
+			if "OwnerUserId" in parent_post and "OwnerUserId" in post:
+				edges[parent_post["OwnerUserId"]].append(post["OwnerUserId"])
 
 with open('parsed/userGraph.csv','w') as outfile:
 	for src_id in edges:
