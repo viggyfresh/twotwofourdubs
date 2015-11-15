@@ -9,6 +9,9 @@ def parse_links(link_filename, out_filename):
             attrs = child.attrib
             outfile.write("%s;%s\n" % (attrs["PostId"], attrs["RelatedPostId"]))
 
+def parse_links_partitioned(link_filename, out_filename, tag_ids):
+    
+
 def parse_tags(tag_filename):
     tag_tree = ET.parse(tag_filename)
     tag_root = tag_tree.getroot()
