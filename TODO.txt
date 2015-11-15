@@ -2,3 +2,8 @@ TODO:
     1. Parse files and model
     2. Push manageable subset or subgraph of data to Github
     3. Begin expertise analysis
+    4. Graph in Gephi Math (if SO is too large) data
+    5. Do degree centrality, betweenness calculations
+       Calculate scores based on vote centrality, badges, etc.
+       Compare network centrality with derived scores
+    
