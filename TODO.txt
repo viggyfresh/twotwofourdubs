@@ -6,4 +6,6 @@ TODO:
     5. Do degree centrality, betweenness calculations
        Calculate scores based on vote centrality, badges, etc.
        Compare network centrality with derived scores
-    
+    6. Pickle:
+        Post to User, Tags, AnswerCount, CommentCount, FavoriteCount
+        User to Reputation, Badges, DisplayName, etc.
