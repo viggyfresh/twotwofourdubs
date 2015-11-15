@@ -1,18 +1,18 @@
 import numpy as np
 import xml.etree.ElementTree as ET
-import pickle
+import cPickle
 
 def pickle_posts(post_filename, out_filename):
     tree = ET.parse(post_filename)
     root = tree.getroot()
     posts = {}
-    fields = ["Id", "PostTypeId", "ParentID", "AcceptedAnswerId", "Score", "ViewCount", "OwnerUserId", "Title", "Tags", "AnswerCount", "CommentCount", "FavoriteCount"]
+    fields = ["Id", "PostTypeId", "ParentId", "AcceptedAnswerId", "Score", "ViewCount", "OwnerUserId", "Title", "Tags", "AnswerCount", "CommentCount", "FavoriteCount"]
     for i, child in enumerate(root):
         attrs = child.attrib
         post = { field: attrs[field] for field in fields if field in attrs }
         posts[post["Id"]] = post
     with open(out_filename, "wb") as outfile:
-        pickle.dump(posts, outfile)
+        cPickle.dump(posts, outfile)
 
 def pickle_users(user_filename, out_filename):
     tree = ET.parse(user_filename)
@@ -24,7 +24,7 @@ def pickle_users(user_filename, out_filename):
         user = { field: attrs[field] for field in fields if field in attrs }
         users[user["Id"]] = user
     with open(out_filename, "wb") as outfile:
-        pickle.dump(users, outfile)
+        cPickle.dump(users, outfile)
 
 def parse_links(link_filename, out_filename):
     tree = ET.parse(link_filename)
