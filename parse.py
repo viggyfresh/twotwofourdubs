@@ -39,6 +39,6 @@ def parse_links_with_tag(link_filename, out_filename, tag_post_ids):
             if int(attrs["PostId"]) in tag_post_ids or int(attrs["RelatedPostId"]) in tag_post_ids:
                 outfile.write("%s;%s\n" % (attrs["PostId"], attrs["RelatedPostId"]))
 
-#parse_links("data/small/PostLinks.xml", "links.csv")
+#parse_links("data/small/PostLinks.xml", "parsed/links.csv")
 tag_post_ids = parse_posts_with_tag("data/small/Posts.xml", "<geometry>")
-parse_links_with_tag("data/small/PostLinks.xml", "geometry_links.csv", tag_post_ids)
+parse_links_with_tag("data/small/PostLinks.xml", "parsed/geometry_links.csv", tag_post_ids)

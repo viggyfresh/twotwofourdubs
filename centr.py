@@ -3,7 +3,7 @@ import snap
 import matplotlib.pyplot as plt
 
 
-G = snap.LoadEdgeList(snap.PNGraph, "links.csv", 0, 1, ';')
+G = snap.LoadEdgeList(snap.PNGraph, "parsed/links.csv", 0, 1, ';')
 
 ### Look at the degree distribution for the networks
 CntV = snap.TIntPrV()
@@ -37,7 +37,7 @@ print outDeg
 
 
 ### Correlate betweenness with reputation
-### 
+###
 betweenCentr = {}
 Nodes = snap.TIntFltH()
 Edges = snap.TIntPrFltH()
@@ -47,8 +47,3 @@ for node in Nodes:
 	betweenCentr[node] = Nodes[node]
 
 print betweenCentr
-
-
-
-
-
