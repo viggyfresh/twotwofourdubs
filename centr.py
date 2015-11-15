@@ -12,10 +12,10 @@ counts = []
 for item in CntV:
 	counts.append((item.GetVal1(), item.GetVal2()))
 x,y = zip(*counts)
-x = [math.log(i) for i in x]
-y = [math.log(i) for i in y]
-
-plt.plot(x,y)
+plt.plot(map(math.log,x),map(math.log,y))
+plt.xlabel('Degree (log)')
+plt.ylabel('Frequency (log)')
+plt.title('Degree Distribution')
 #plt.show()
 
 
@@ -35,13 +35,12 @@ print outDeg
 # TODO correlate outDeg, inDeg with reputation
 
 
-
 ### Correlate betweenness with reputation
 ### 
 betweenCentr = {}
 Nodes = snap.TIntFltH()
 Edges = snap.TIntPrFltH()
-snap.GetBetweennessCentr(G, Nodes, Edges, 1.0)
+snap.GetBetweennessCentr(UG, Nodes, Edges, 1.0)
 
 for node in Nodes:
 	betweenCentr[node] = Nodes[node]
