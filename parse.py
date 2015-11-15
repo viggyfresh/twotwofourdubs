@@ -1,5 +1,30 @@
 import numpy as np
 import xml.etree.ElementTree as ET
+import pickle
+
+def pickle_posts(post_filename, out_filename):
+    tree = ET.parse(post_filename)
+    root = tree.getroot()
+    posts = {}
+    fields = ["Id", "PostTypeId", "ParentID", "AcceptedAnswerId", "Score", "ViewCount", "OwnerUserId", "Title", "Tags", "AnswerCount", "CommentCount", "FavoriteCount"]
+    for i, child in enumerate(root):
+        attrs = child.attrib
+        post = { field: attrs[field] for field in fields if field in attrs }
+        posts[post["Id"]] = post
+    with open(out_filename, "wb") as outfile:
+        pickle.dump(posts, outfile)
+
+def pickle_users(user_filename, out_filename):
+    tree = ET.parse(user_filename)
+    root = tree.getroot()
+    users = {}
+    fields = ["Id", "Reputation", "CreationDate", "DisplayName", "LastAccessDate", "Location", "Age", "Views", "UpVotes", "DownVotes"]
+    for i, child in enumerate(root):
+        attrs = child.attrib
+        user = { field: attrs[field] for field in fields if field in attrs }
+        users[user["Id"]] = user
+    with open(out_filename, "wb") as outfile:
+        pickle.dump(users, outfile)
 
 def parse_links(link_filename, out_filename):
     tree = ET.parse(link_filename)
@@ -9,8 +34,7 @@ def parse_links(link_filename, out_filename):
             attrs = child.attrib
             outfile.write("%s;%s\n" % (attrs["PostId"], attrs["RelatedPostId"]))
 
-def parse_links_partitioned(link_filename, out_filename, tag_ids):
-    
+#def parse_links_partitioned(link_filename, out_filename, tag_ids):
 
 def parse_tags(tag_filename):
     tag_tree = ET.parse(tag_filename)
@@ -42,6 +66,12 @@ def parse_links_with_tag(link_filename, out_filename, tag_post_ids):
             if int(attrs["PostId"]) in tag_post_ids or int(attrs["RelatedPostId"]) in tag_post_ids:
                 outfile.write("%s;%s\n" % (attrs["PostId"], attrs["RelatedPostId"]))
 
+def pickle_all():
+    pickle_posts("data/small/Posts.xml", "pickle/posts.pickle")
+    pickle_users("data/small/Users.xml", "pickle/users.pickle")
+
+pickle_all()
+
 #parse_links("data/small/PostLinks.xml", "parsed/links.csv")
-tag_post_ids = parse_posts_with_tag("data/small/Posts.xml", "<geometry>")
-parse_links_with_tag("data/small/PostLinks.xml", "parsed/geometry_links.csv", tag_post_ids)
+#tag_post_ids = parse_posts_with_tag("data/small/Posts.xml", "<geometry>")
+#parse_links_with_tag("data/small/PostLinks.xml", "parsed/geometry_links.csv", tag_post_ids)
