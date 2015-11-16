@@ -4,6 +4,9 @@ import matplotlib.pyplot as plt
 
 
 G = snap.LoadEdgeList(snap.PNGraph, "parsed/links.csv", 0, 1, ';')
+UG = snap.ConvertGraph(snap.PUNGraph, G)
+
+print "hi"
 
 ### Look at the degree distribution for the networks
 CntV = snap.TIntPrV()
