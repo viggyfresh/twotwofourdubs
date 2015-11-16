@@ -37,7 +37,7 @@ for user_id in users:
 	X.append(f_vec)
 
 fig = plt.figure(1)
-fig.suptitle("K-Means Clustering: Users From Geometry Posts")
+fig.suptitle("K-Means Clustering: Users Contributing to Geometry Posts")
 
 X = np.reshape(X, (len(X),5))
 y_pred = KMeans(n_clusters=2).fit_predict(X)
