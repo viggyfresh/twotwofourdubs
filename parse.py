@@ -1,3 +1,4 @@
+from collections import defaultdict
 import numpy as np
 import xml.etree.ElementTree as ET
 import cPickle
@@ -25,6 +26,31 @@ def pickle_users(user_filename, out_filename):
         users[user["Id"]] = user
     with open(out_filename, "wb") as outfile:
         cPickle.dump(users, outfile)
+
+def pickle_badges(badge_filename, out_filename):
+    tree = ET.parse(badge_filename)
+    root = tree.getroot()
+    badges = defaultdict(list)
+    fields = ["UserId", "Name", "Date"]
+    for i, child in enumerate(root):
+        attrs = child.attrib
+        badge = { field: attrs[field] for field in fields if field in attrs }
+        badges[badge["UserId"]].append(badge)
+    with open(out_filename, "wb") as outfile:
+        cPickle.dump(badges, outfile)
+
+def pickle_user_to_posts(post_filename, out_filename):
+    tree = ET.parse(post_filename)
+    root = tree.getroot()
+    user_to_posts = defaultdict(list)
+    fields = ["Id", "PostTypeId", "ParentId", "AcceptedAnswerId", "Score", "ViewCount", "OwnerUserId", "Title", "Tags", "AnswerCount", "CommentCount", "FavoriteCount"]
+    for i, child in enumerate(root):
+        attrs = child.attrib
+        post = { field: attrs[field] for field in fields if field in attrs }
+        if "OwnerUserId" in post:
+            user_to_posts[post["OwnerUserId"]] = post
+    with open(out_filename, "wb") as outfile:
+        cPickle.dump(user_to_posts, outfile)
 
 def parse_links(link_filename, out_filename):
     tree = ET.parse(link_filename)
@@ -69,6 +95,8 @@ def parse_links_with_tag(link_filename, out_filename, tag_post_ids):
 def pickle_all():
     pickle_posts("data/small/Posts.xml", "pickle/posts.pickle")
     pickle_users("data/small/Users.xml", "pickle/users.pickle")
+    pickle_badges("data/small/Badges.xml", "pickle/badges.pickle")
+    pickle_user_to_posts("data/small/Posts.xml", "pickle/user_to_posts.pickle")
 
 pickle_all()
 
