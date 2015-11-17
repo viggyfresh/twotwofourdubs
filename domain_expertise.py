@@ -7,7 +7,9 @@ import operator
 # Params: reputation, badges, UpVotes, DownVotes
 # Computed params:  in/out degree, centrality score
 def domain_expertise(reputation, badges, upvotes, downvotes, indegree, outdegree, centrality):
-    return float(reputation)
+    # return float(reputation)
+    # return float(indegree)
+    return (float(indegree) - float(outdegree)) * (float(upvotes) - float(downvotes))
 
 g = snap.LoadEdgeList(snap.PNGraph, "parsed/geometry_qa.csv", 0, 1, ';')
 ug = snap.ConvertGraph(snap.PUNGraph, g)
@@ -23,7 +25,6 @@ expertise = defaultdict(float)
 
 for node in g.Nodes():
     id = str(node.GetId())
-    print id
     user = users[id]
     badge = badges[id]
     posts = user_to_posts[id]
