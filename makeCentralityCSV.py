@@ -58,7 +58,7 @@ for item in PRankH:
 
 with open('CentrFeatures.csv', 'w') as outfile:
 	for NI in G.Nodes():
-		features = [inDeg[NI.GetId()],outDeg[NI.GetId()],
+		features = [NI.GetId(),inDeg[NI.GetId()],outDeg[NI.GetId()],
 					closeCentr[NI.GetId()], betweenness[NI.GetId()],
 					eigVecCentr[NI.GetId()], pageRankCentr[NI.GetId()]]
 		features = [str(x) for x in features]
