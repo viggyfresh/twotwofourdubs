@@ -83,7 +83,8 @@ for i in nodes:
 			ik = getCode(adj_set,i,k)
 
 			code = calcBaseFour(ij,jk,ik)
-
+			if triadMap[code] == 38:
+				print i,j,k
 			triads[triadMap[code]]+= 1
 
 print triads
