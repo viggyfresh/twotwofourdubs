@@ -57,10 +57,10 @@ Y = Y[:1000]
 K = 10
 examplesPerFold = len(X) / K
 print len(X)
-models = [linear_model.LinearRegression(),SVR(kernel='rbf', C=1e3, gamma=0.1),  
-		  SVR(kernel='linear', C=1e3), SVR(kernel='poly', C=1e3, degree=2),
-		  linear_model.Ridge (alpha = .5), ]
-models_names = ['linear','svr_rbf', 'svr_linear', 'svr_poly','ridge']
+models = [linear_model.LinearRegression(),linear_model.Ridge (alpha = .5), 
+		  SVR(kernel='rbf', C=1e3, gamma=0.1),  
+		  SVR(kernel='linear', C=1e3), SVR(kernel='poly', C=1e3, degree=2)]
+models_names = ['linear','ridge','svr_rbf', 'svr_linear', 'svr_poly']
 for model_i, model in enumerate(models):
 	print "####################Using model " + models_names[model_i] + "######################"
 	modelTestResiduals = []
