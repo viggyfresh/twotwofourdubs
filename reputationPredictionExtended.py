@@ -59,14 +59,21 @@ examplesPerFold = len(X) / K
 print len(X)
 
 models = [linear_model.LinearRegression(),linear_model.Ridge (alpha = .5),
-		  SVR(kernel='rbf', C=1e3, gamma=0.1), SVR(kernel='linear', C=1e3), SVR(kernel='poly', C=1e3, degree=2)]
-models_names = ['linear','ridge','svr_rbf','svr_linear','svr_poly']
+		  SVR(kernel='rbf', C=1e6, gamma=0.1),
+		  SVR(kernel='rbf', C=1e5, gamma=0.1),
+		  SVR(kernel='rbf', C=1e4, gamma=0.1),
+		  SVR(kernel='rbf', C=1e3, gamma=0.1),
+		  SVR(kernel='rbf', C=1e2, gamma=0.1),
+		  SVR(kernel='rbf', C=1e1, gamma=0.1),
+		  SVR(kernel='rbf', C=1e-1, gamma=0.1),
+		  SVR(kernel='rbf', C=1e-2, gamma=0.1),
+		  SVR(kernel='rbf', C=1e-3, gamma=0.1)]
+models_names = ['linear','ridge','svr_rbf','svr_rbf','svr_rbf','svr_rbf','svr_rbf','svr_rbf','svr_rbf','svr_rbf','svr_rbf']
 for model_i, model in enumerate(models):
 	print "####################Using model " + models_names[model_i] + "######################"
-	modelTestResiduals = []
-	modelTrainResiduals = []
+	modelTestResiduals = 0
+	modelTrainResiduals = 0
 	for i in range(K):
-		print i
 		testX = X[i * examplesPerFold: (i+1) * examplesPerFold]
 		testY = Y[i * examplesPerFold: (i+1) * examplesPerFold]
 
@@ -82,16 +89,16 @@ for model_i, model in enumerate(models):
 		# if model_i == 0:
 		#	print('Coefficients: \n', regr.coef_)
 			# The mean square error
-		residualTest = np.mean((regr.predict(np.array(testX)) - np.array(testY)) ** 2)
-		residualTrain = np.mean((regr.predict(np.array(trainX)) - np.array(trainY)) ** 2)
-		modelTestResiduals.append(residualTest)
-		modelTrainResiduals.append(residualTrain)
-		print "Residual sum of squares: {0}, residual sqrt {1}".format(residualTest, residualTest ** .5)
+		residualTest = sum((regr.predict(np.array(testX)) - np.array(testY)) ** 2)
+		residualTrain = sum((regr.predict(np.array(trainX)) - np.array(trainY)) ** 2)
+		modelTestResiduals += residualTest
+		modelTrainResiduals += residualTrain
+		# print "Residual sum of squares: {0}, residual sqrt {1}".format(residualTest, residualTest ** .5)
 		# Explained variance score: 1 is perfect prediction
 		#print('Variance score: %.2f' % regr.score(testX, testY))
 
-	print ('Total Test RMSD {0}'.format((np.mean(modelTestResiduals)) ** .5))
-	print ('Total Train RMSD {0}'.format((np.mean(modelTrainResiduals)) ** .5))
+	print ('Total Test RMSD {0}'.format((modelTestResiduals / float(len(X))) ** .5))
+	print ('Total Train RMSD {0}'.format((modelTrainResiduals / float((K-1) * len(X))) ** .5))
 
 
 

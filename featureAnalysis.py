@@ -1,4 +1,6 @@
 import numpy as np
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
 
 def addToFeatureMap(fn, featureMap):
 	print fn
@@ -38,12 +40,14 @@ for key in unionMap:
 	for i,x in enumerate(unionMap[key]):
 		reData[i].append(x)
 
-print "inDeg,outDeg,closeCentr,betCentr,eigVecCentr,pageRankCentr" + "Views,DownVotes,UpVotes,Reputation,DaysSinceCreation,DaysSinceAccess"
+labels = "inDeg,outDeg,closeCentr,betCentr,eigVecCentr,pageRankCentr" + "Views,DownVotes,UpVotes,Reputation,DaysSinceCreation,DaysSinceAccess"
 outfile = open('featureAnalysis.out','w')
 corrOut = np.corrcoef(reData)
+sm.graphics.plot_corr(np.array([[1,0],[0,1]]), xnames=labels.split())
+plt.show()
 l = [str(x) for x in corrOut[9]]
 print ','.join(l) + '\n'
-outfile.write(','.join(l) + '\n')
+# outfile.write(','.join(l) + '\n')
 #outfile.write(str(np.corrcoef(reData)))	
 
 
