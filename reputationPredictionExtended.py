@@ -58,8 +58,8 @@ K = 10
 examplesPerFold = len(X) / K
 print len(X)
 
-models = [linear_model.LinearRegression()]
-models_names = ['linear']
+models = [linear_model.LinearRegression(),linear_model.Ridge (alpha = .5)]
+models_names = ['linear','ridge']
 for model_i, model in enumerate(models):
 	print "####################Using model " + models_names[model_i] + "######################"
 	modelTestResiduals = []
@@ -89,8 +89,8 @@ for model_i, model in enumerate(models):
 		# Explained variance score: 1 is perfect prediction
 		#print('Variance score: %.2f' % regr.score(testX, testY))
 
-	print ('Total RMSD {0}'.format((np.mean(modelTestResiduals)) ** .5))
-	print ('Total RMSD {0}'.format((np.mean(modelTrainResiduals)) ** .5))
+	print ('Total Test RMSD {0}'.format((np.mean(modelTestResiduals)) ** .5))
+	print ('Total Train RMSD {0}'.format((np.mean(modelTrainResiduals)) ** .5))
 
 
 
