@@ -1,6 +1,6 @@
 import numpy as np
 
-def addToFeatureMap(fn, numDefault,featureMap):
+def addToFeatureMap(fn, featureMap):
 	print fn
 
 	infile = open(fn,'r')
@@ -15,8 +15,6 @@ def addToFeatureMap(fn, numDefault,featureMap):
 		if user_id not in featureMap:
 			featureMap[user_id] = []
 
-		if len(featureMap[user_id]) < numDefault:
-			featureMap[user_id] = [0 for i in range(numDefault-len(featureMap[user_id]))]
 		featureMap[user_id] += badges
 
 
@@ -26,8 +24,8 @@ featureMapUser = {}
 
 
 #addToFeatureMap('UserBadgesFeatures.csv',0)
-addToFeatureMap('CentrFeatures.csv',0, featureMapCentr)
-addToFeatureMap('UserFeatures.csv', 0, featureMapUser)
+addToFeatureMap('CentrFeatures.csv',featureMapCentr)
+addToFeatureMap('UserFeatures.csv',featureMapUser)
 
 
 unionMap = {}
@@ -40,14 +38,12 @@ for key in unionMap:
 	for i,x in enumerate(unionMap[key]):
 		reData[i].append(x)
 
-
-
-
+print "inDeg,outDeg,closeCentr,betCentr,eigVecCentr,pageRankCentr" + "Views,DownVotes,UpVotes,Reputation,DaysSinceCreation,DaysSinceAccess"
 outfile = open('featureAnalysis.out','w')
 corrOut = np.corrcoef(reData)
-for l in corrOut:
-	l = [str(x) for x in l]
-	outfile.write(','.join(l) + '\n')
+l = [str(x) for x in corrOut[9]]
+print ','.join(l) + '\n'
+outfile.write(','.join(l) + '\n')
 #outfile.write(str(np.corrcoef(reData)))	
 
 
