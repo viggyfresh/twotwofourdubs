@@ -112,7 +112,7 @@ ax1.set_yticks([])  # Clear the yaxis labels / ticks
 ax1.set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
 
 # 2nd Plot showing the actual clusters formed
-colors = cm.spectral(y_pred.astype(float) / 2)
+colors = cm.spectral(y_pred.astype(float) / n_clusters)
 ax2.scatter(X[:, 0], X[:, 1], marker='.', s=30, lw=0, alpha=0.7,
             c=colors)
 
@@ -154,7 +154,7 @@ ax3.set_yticks([])  # Clear the yaxis labels / ticks
 ax3.set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
 
 # 2nd Plot showing the actual clusters formed
-colors = cm.spectral(y_pred.astype(float) / 2)
+colors = cm.spectral(y_pred.astype(float) / n_clusters)
 ax4.scatter(X[:, 0], X[:, 1], marker='.', s=30, lw=0, alpha=0.7,
             c=colors)
 
@@ -229,7 +229,7 @@ ax5.set_yticks([])  # Clear the yaxis labels / ticks
 ax5.set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
 
 # 2nd Plot showing the actual clusters formed
-colors = cm.spectral(y_pred.astype(float) / 2)
+colors = cm.spectral(y_pred.astype(float) / n_clusters)
 ax6.scatter(X[:, 0], X[:, 1], marker='.', s=30, lw=0, alpha=0.7,
             c=colors)
 
@@ -272,7 +272,7 @@ ax7.set_yticks([])  # Clear the yaxis labels / ticks
 ax7.set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
 
 # 2nd Plot showing the actual clusters formed
-colors = cm.spectral(y_pred.astype(float) / 2)
+colors = cm.spectral(y_pred.astype(float) / n_clusters)
 ax8.scatter(X[:, 0], X[:, 1], marker='.', s=30, lw=0, alpha=0.7,
             c=colors)
 
@@ -281,3 +281,10 @@ ax8.xaxis.set_visible(False)
 ax8.yaxis.set_visible(False)
 
 plt.show()
+
+
+# ('For n_clusters = 2 The average silhouette_score is :', 0.97279015433590943)
+# ('For n_clusters = 3 The average silhouette_score is :', 0.95940627514705934)
+# ('For n_clusters = 4 The average silhouette_score is :', 0.91125797659193941)
+# ('For n_clusters = 5 The average silhouette_score is :', 0.88663965383489796)
+
