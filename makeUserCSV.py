@@ -35,7 +35,7 @@ with open('UserFeatures.csv', 'w') as outfile:
 		creationDelta = (datetime.datetime.now() - createdTime).days
 		lastAccessDelta = (datetime.datetime.now() - lastAccessTime).days
 
-		feature_vec = [int(d['Views']),int(d['DownVotes']),int(d['UpVotes']), 
+		feature_vec = [user_id, int(d['Views']),int(d['DownVotes']),int(d['UpVotes']), 
 					   float(d['Reputation']), creationDelta, lastAccessDelta]
 		feature_vec = [str(x) for x in feature_vec]
 		outfile.write(','.join(feature_vec) + "\n")

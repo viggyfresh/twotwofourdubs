@@ -27,7 +27,7 @@ outfile = open('UserBadgesFeatures.csv','w')
 keyOrdering = list(keySet)
 outfile.write(','.join(keyOrdering) + '\n')
 for user in allBadges:
-    featureList = []
+    featureList = [str(user)]
     for key in keyOrdering:
         featureList.append(allBadges[user][key])
     featureList = [str(x) for x in featureList]
