@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 
 def addToFeatureMap(fn, featureMap):
 	print fn
-
 	infile = open(fn,'r')
 	first = True
 	for line in infile:
@@ -16,7 +15,6 @@ def addToFeatureMap(fn, featureMap):
 		badges = [float(x) for x in splitted[1:]]
 		if user_id not in featureMap:
 			featureMap[user_id] = []
-
 		featureMap[user_id] += badges
 
 
@@ -40,10 +38,31 @@ for key in unionMap:
 	for i,x in enumerate(unionMap[key]):
 		reData[i].append(x)
 
-labels = "inDeg,outDeg,closeCentr,betCentr,eigVecCentr,pageRankCentr" + "Views,DownVotes,UpVotes,Reputation,DaysSinceCreation,DaysSinceAccess"
-outfile = open('featureAnalysis.out','w')
+labels = "inDeg,outDeg,closeCentr,betCentr,eigVecCentr,pageRankCentr," + "Views,DownVotes,UpVotes,Reputation,DaysSinceCreation,DaysSinceAccess"
+
 corrOut = np.corrcoef(reData)
-sm.graphics.plot_corr(np.array([[1,0],[0,1]]), xnames=labels.split())
+sm.graphics.plot_corr(corrOut)
+
+labels = "inDeg,outDeg,closeCentr,betCentr,eigVecCentr,pageRankCentr," + "Views,DownVotes,UpVotes,Reputation,DaysSinceCreation,DaysSinceAccess"
+labels = labels.split(',')
+n_groups = len(labels)
+index = np.arange(n_groups)
+bar_width = 0.35
+
+plt.xticks(index + bar_width, labels)
+_, labelsX = plt.xticks()
+plt.setp(labelsX, rotation=275)
+
+plt.yticks(index + bar_width, labels)
+_, labelsY = plt.yticks()
+plt.setp(labelsY, rotation=0)
+
+plt.xlabel("Features")
+plt.ylabel("Features")
+
+plt.gcf().subplots_adjust(bottom=0.35)
+
+
 plt.show()
 l = [str(x) for x in corrOut[9]]
 print ','.join(l) + '\n'
