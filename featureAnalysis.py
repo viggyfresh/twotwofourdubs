@@ -41,7 +41,8 @@ for key in unionMap:
 labels = "inDeg,outDeg,closeCentr,betCentr,eigVecCentr,pageRankCentr," + "Views,DownVotes,UpVotes,Reputation,DaysSinceCreation,DaysSinceAccess"
 
 corrOut = np.corrcoef(reData)
-sm.graphics.plot_corr(corrOut)
+print corrOut
+sm.graphics.plot_corr(corrOut[::-1])
 
 labels = "inDeg,outDeg,closeCentr,betCentr,eigVecCentr,pageRankCentr," + "Views,DownVotes,UpVotes,Reputation,DaysSinceCreation,DaysSinceAccess"
 labels = labels.split(',')
@@ -51,7 +52,7 @@ bar_width = 0.35
 
 plt.xticks(index + bar_width, labels)
 _, labelsX = plt.xticks()
-plt.setp(labelsX, rotation=275)
+plt.setp(labelsX, rotation=270)
 
 plt.yticks(index + bar_width, labels)
 _, labelsY = plt.yticks()
@@ -63,7 +64,7 @@ plt.ylabel("Features")
 plt.gcf().subplots_adjust(bottom=0.35)
 
 
-plt.show()
+plt.savefig('images/correlationMatrix.png')
 l = [str(x) for x in corrOut[9]]
 print ','.join(l) + '\n'
 # outfile.write(','.join(l) + '\n')
