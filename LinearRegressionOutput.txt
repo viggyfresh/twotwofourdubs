@@ -1,69 +1,9 @@
 ####################Using model linear######################
-0
-Residual sum of squares: 159.754529614, residual sqrt 12.6394038472
-1
-Residual sum of squares: 117.357851391, residual sqrt 10.8331828837
-2
-Residual sum of squares: 49.4176547762, residual sqrt 7.02976918371
-3
-Residual sum of squares: 35.6481273426, residual sqrt 5.9706052744
-4
-Residual sum of squares: 16.1163593346, residual sqrt 4.01451856823
-5
-Residual sum of squares: 12.8055523198, residual sqrt 3.57848464016
-6
-Residual sum of squares: 21.5712466518, residual sqrt 4.64448561757
-7
-Residual sum of squares: 38.4334794749, residual sqrt 6.1994741289
-8
-Residual sum of squares: 108.951616145, residual sqrt 10.4379890853
-9
-Residual sum of squares: 204.441999888, residual sqrt 14.2983215759
 Total Test RMSD 8.74356001259
 Total Train RMSD 7.19583630995
 ####################Using model ridge######################
-0
-Residual sum of squares: 151.370148164, residual sqrt 12.3032576241
-1
-Residual sum of squares: 113.044007764, residual sqrt 10.6322155623
-2
-Residual sum of squares: 47.5186018227, residual sqrt 6.89337376201
-3
-Residual sum of squares: 33.3592941689, residual sqrt 5.77575052862
-4
-Residual sum of squares: 15.5713719503, residual sqrt 3.94605777331
-5
-Residual sum of squares: 9.78074019875, residual sqrt 3.12741749671
-6
-Residual sum of squares: 16.585876952, residual sqrt 4.0725762058
-7
-Residual sum of squares: 38.1970789294, residual sqrt 6.18037854256
-8
-Residual sum of squares: 109.113544174, residual sqrt 10.4457428732
-9
-Residual sum of squares: 203.457848396, residual sqrt 14.2638651282
 Total Test RMSD 8.59068398045
 Total Train RMSD 7.21021314716
-####################Using model rbf######################
-0
-Residual sum of squares: 218.536274951, residual sqrt 14.7829724667
-1
-Residual sum of squares: 137.608663203, residual sqrt 11.7306718991
-2
-Residual sum of squares: 31.298890425, residual sqrt 5.5945411273
-3
-Residual sum of squares: 24.7941406084, residual sqrt 4.97937150737
-4
-Residual sum of squares: 5.0456309244, residual sqrt 2.24624818851
-5
-Residual sum of squares: 8.99578410129, residual sqrt 2.99929726791
-6
-Residual sum of squares: 14.7624660309, residual sqrt 3.84219547015
-7
-Residual sum of squares: 42.6830575118, residual sqrt 6.53322718967
-8
-Residual sum of squares: 109.507950195, residual sqrt 10.4646046363
-9
-Residual sum of squares: 230.675716556, residual sqrt 15.1880122648
+####################Using model svr_rbf######################
 Total Test RMSD 9.07694097429
 Total Train RMSD 2.28485736144
