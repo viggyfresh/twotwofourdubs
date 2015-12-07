@@ -3,6 +3,24 @@ import numpy as np
 import xml.etree.ElementTree as ET
 import cPickle
 
+def get_sizes():
+    badge_size = len(ET.parse("data/small/Badges.xml").getroot())
+    comment_size = len(ET.parse("data/small/Comments.xml").getroot())
+    post_history_size = len(ET.parse("data/small/PostHistory.xml").getroot())
+    post_links_size = len(ET.parse("data/small/PostLinks.xml").getroot())
+    post_size = len(ET.parse("data/small/Posts.xml").getroot())
+    tag_size = len(ET.parse("data/small/Tags.xml").getroot())
+    user_size = len(ET.parse("data/small/Users.xml").getroot())
+    vote_size = len(ET.parse("data/small/Votes.xml").getroot())
+    print "Badges: %d" % badge_size
+    print "Comments: %d" % comment_size
+    print "PostHistory: %d" % post_history_size
+    print "PostLinks: %d" % post_links_size
+    print "Posts: %d" % post_size
+    print "Tags: %d" % tag_size
+    print "Users: %d" % user_size
+    print "Votes: %d" % vote_size
+
 def pickle_posts(post_filename, out_filename):
     tree = ET.parse(post_filename)
     root = tree.getroot()
@@ -98,7 +116,7 @@ def pickle_all():
     pickle_badges("data/small/Badges.xml", "pickle/badges.pickle")
     pickle_user_to_posts("data/small/Posts.xml", "pickle/user_to_posts.pickle")
 
-pickle_all()
+#pickle_all()
 
 #parse_links("data/small/PostLinks.xml", "parsed/links.csv")
 #tag_post_ids = parse_posts_with_tag("data/small/Posts.xml", "<geometry>")
